@@ -1,26 +1,35 @@
-package jbdc;
+package jdbc;
 
 public class Student {
 	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String imageUrl;
 
-	
-
-	public Student(int id, String firstName, String lastName, String email) {
+	public Student(int id, String firstName, String lastName, String email, String imageUrl) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.imageUrl = imageUrl;
 	}
-	
-	public Student(String firstName, String lastName, String email) {
+
+	public Student(String firstName, String lastName, String email, String imageUrl) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.imageUrl = imageUrl;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public int getId() {
@@ -54,5 +63,13 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", imageUrl=" + imageUrl + "]";
+	}
+	
+	
 
 }

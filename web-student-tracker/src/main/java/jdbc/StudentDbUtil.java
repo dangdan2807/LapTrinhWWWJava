@@ -1,4 +1,4 @@
-package jbdc;
+package jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +36,7 @@ public class StudentDbUtil {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String query = "select * from student order by lastName";
+			String query = "select * from student order by lastName desc";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
@@ -44,7 +44,8 @@ public class StudentDbUtil {
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
 				String email = rs.getString("email");
-				Student tempStudent = new Student(id, firstName, lastName, email);
+				String imageUrl = rs.getString("imageUrl");
+				Student tempStudent = new Student(id, firstName, lastName, email, imageUrl);
 				students.add(tempStudent);
 			}
 			return students;
@@ -58,11 +59,12 @@ public class StudentDbUtil {
 		PreparedStatement stmt = null;
 		try {
 			con = dataSource.getConnection();
-			String query = "insert into student (firstName, lastName, email) values (?, ?, ?)";
+			String query = "insert into student (firstName, lastName, email, imageUrl) values (?, ?, ?, ?)";
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, student.getFirstName());
 			stmt.setString(2, student.getLastName());
 			stmt.setString(3, student.getEmail());
+			stmt.setString(4, student.getImageUrl());
 			stmt.execute();
 		} finally {
 			close(con, stmt, null);
@@ -74,12 +76,13 @@ public class StudentDbUtil {
 		PreparedStatement stmt = null;
 		try {
 			con = dataSource.getConnection();
-			String query = "update student set firstName=?, lastName=?, email=? where id=?";
+			String query = "update student set firstName=?, lastName=?, email=?, imageUrl=? where id=?";
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, student.getFirstName());
 			stmt.setString(2, student.getLastName());
 			stmt.setString(3, student.getEmail());
-			stmt.setInt(4, student.getId());
+			stmt.setString(4, student.getImageUrl());
+			stmt.setInt(5, student.getId());
 			stmt.execute();
 		} finally {
 			close(con, stmt, null);
@@ -118,7 +121,8 @@ public class StudentDbUtil {
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
 				String email = rs.getString("email");
-				student = new Student(studentId, firstName, lastName, email);
+				String imageUrl = rs.getString("imageUrl");
+				student = new Student(studentId, firstName, lastName, email, imageUrl);
 			} else {
 				throw new Exception("Could not find student id: " + studentId);
 			}

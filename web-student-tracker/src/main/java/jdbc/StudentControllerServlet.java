@@ -1,4 +1,4 @@
-package jbdc;
+package jdbc;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +20,7 @@ public class StudentControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StudentDbUtil studentDbUtil;
 
-	@Resource(name="jdbc/web_student_tracker")
+	@Resource(name = "jdbc/web_student_tracker")
 	private DataSource dataSource;
 
 	@Override
@@ -89,8 +89,9 @@ public class StudentControllerServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
+		String imageUrl = request.getParameter("imageUrl");
 
-		Student student = new Student(firstName, lastName, email);
+		Student student = new Student(firstName, lastName, email, imageUrl);
 		studentDbUtil.addStudent(student);
 		listStudents(request, response);
 	}
@@ -108,8 +109,9 @@ public class StudentControllerServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
+		String imageUrl = request.getParameter("imageUrl");
 
-		Student student = new Student(id, firstName, lastName, email);
+		Student student = new Student(id, firstName, lastName, email, imageUrl);
 		studentDbUtil.updateStudent(student);
 		listStudents(request, response);
 	}
