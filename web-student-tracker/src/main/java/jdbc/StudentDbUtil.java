@@ -88,7 +88,7 @@ public class StudentDbUtil {
 			close(con, stmt, null);
 		}
 	}
-	
+
 	public void deleteStudent(String theStudentId) throws Exception {
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -103,7 +103,7 @@ public class StudentDbUtil {
 			close(con, stmt, null);
 		}
 	}
-	
+
 	public Student getStudent(String theStudentId) throws Exception {
 		Student student = null;
 		Connection con = null;

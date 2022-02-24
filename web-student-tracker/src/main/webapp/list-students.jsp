@@ -7,26 +7,26 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Student Tracker App</title>
+<link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
-<link type="text/css" rel="stylesheet" href="./css/style.css">
-</link>
+<script src="./js/script.js"></script>
 </head>
 
 <body>
 	<div id="wrapper">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="header pt-4 pb-4 font-weight-bold text-white bg-primary">
 				<h1>FooBar University</h1>
 			</div>
-			<div class="control mt-4">
+			<div class="control mt-2">
 				<button type="button" class="btn btn-primary"
 					onclick="window.location.href='add-student-form.jsp'; return false;">
 					Add Student</button>
 			</div>
-			<div class="show-data mt-4">
+			<div class="show-data mt-2">
 				<table class="table table-striped table-hover">
 					<thead class="bg-primary">
 						<tr class="text-white">
@@ -49,12 +49,14 @@
 								<c:param name="studentId" value="${tempStudent.id}"></c:param>
 							</c:url>
 							<tr>
-								<td>${tempStudent.id}</td>
+								<td class="test">${tempStudent.id}</td>
 								<td>${tempStudent.firstName}</td>
 								<td>${tempStudent.lastName}</td>
-								<td>${tempStudent.email}</td>
-								<td><img src="${tempStudent.imageUrl}" width="50"
-									height="50" class="rounded" /></td>
+								<td><a href="mailto:${tempStudent.email}">${tempStudent.email}</a>
+								</td>
+								<td><img class="rounded avatar"
+									src="${tempStudent.imageUrl}" width="64" height="64" />
+								</td>
 								<td><a class="btn btn-primary" href="${tempLink}">Edit</a>
 									<a class="btn btn-danger" href="${deleteLink}"
 									onclick="if (!confirm('Are you sure you want to delete this student?')) { return false; }">

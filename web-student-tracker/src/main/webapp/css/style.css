@@ -12,13 +12,12 @@ body {
 
 .header {
     width: 100%;
-    background-color: #0c88ef;
 }
 
 .header > h1 {
     text-align: center;
 }
 
-form a.btn~.img-avatar {
+form a.btn ~ #img-avatar {
     margin-bottom: 8px;
 }

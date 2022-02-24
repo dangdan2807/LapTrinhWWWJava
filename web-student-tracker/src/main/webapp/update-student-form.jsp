@@ -11,16 +11,16 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
-<link type="text/css" rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 	<div id="wrapper">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="header pt-4 pb-4 font-weight-bold text-light">
 				<h1>Edit Student Info Form</h1>
 			</div>
-			<div class="control mt-4 mb-4">
+			<div class="control mt-2 mb-2">
 				<a type="button" class="btn btn-primary"
 					href="StudentControllerServlet">Back to Dashboard</a>
 			</div>
@@ -56,27 +56,14 @@
 				</div>
 				<button type="submit" class="btn btn-primary" value="Save">Save</button>
 				<a type="button" class="btn btn-danger"
-					href="StudentControllerServlet">Cancel</a> <img id="img-avatar"
+					href="StudentControllerServlet">Cancel</a> 
+				<img id="img-avatar"
 					class="float-right rounded img-avatar" src="${THE_STUDENT.imageUrl}"
-					alt="image avatar" width="150" height="150">
+					alt="image avatar" width="100" height="100">
 			</form>
 		</div>
 	</div>
-
-	<script type="text/javascript">
-		var imgAvatar = document.getElementById("img-avatar");
-		var imageUrl = document.getElementById("imageUrl");
-
-		function imageUrlChanged() {
-			var imageUrlLink = imageUrl.value;
-			if (imageUrlLink) {
-				imgAvatar.hidden = false;
-			} else {
-				imgAvatar.hidden = true;
-			}
-			imgAvatar.src = imageUrlLink;
-		}
-	</script>
+	<script src="./js/script.js"></script>
 </body>
 
 </html>
