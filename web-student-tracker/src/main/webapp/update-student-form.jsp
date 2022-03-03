@@ -17,7 +17,7 @@
 <body>
 	<div id="wrapper">
 		<div class="container-fluid">
-			<div class="header pt-4 pb-4 font-weight-bold text-light">
+			<div class="header pt-4 pb-4 font-weight-bold text-light bg-primary">
 				<h1>Edit Student Info Form</h1>
 			</div>
 			<div class="control mt-2 mb-2">
