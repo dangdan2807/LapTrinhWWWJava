@@ -7,12 +7,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Student Tracker App</title>
-<link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" 
 	crossorigin="anonymous">
-<script src="./js/script.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
@@ -40,7 +39,7 @@
 					</thead>
 					<tbody>
 						<c:forEach var="tempStudent" items="${STUDENT_LIST}">
-							<c:url var="tempLink" value="StudentControllerServlet">
+							<c:url var="editLink" value="StudentControllerServlet">
 								<c:param name="command" value="LOAD"></c:param>
 								<c:param name="studentId" value="${tempStudent.id}"></c:param>
 							</c:url>
@@ -49,7 +48,7 @@
 								<c:param name="studentId" value="${tempStudent.id}"></c:param>
 							</c:url>
 							<tr>
-								<td class="test">${tempStudent.id}</td>
+								<td data-id="${tempStudent.id}">${tempStudent.id}</td>
 								<td>${tempStudent.firstName}</td>
 								<td>${tempStudent.lastName}</td>
 								<td><a href="mailto:${tempStudent.email}">${tempStudent.email}</a>
@@ -57,7 +56,7 @@
 								<td><img class="rounded avatar"
 									src="${tempStudent.imageUrl}" width="64" height="64" />
 								</td>
-								<td><a class="btn btn-primary" href="${tempLink}">Edit</a>
+								<td><a class="btn btn-primary" href="${editLink}">Edit</a>
 									<a class="btn btn-danger" href="${deleteLink}"
 									onclick="if (!confirm('Are you sure you want to delete this student?')) { return false; }">
 										Delete </a></td>
@@ -68,6 +67,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="./js/script.js"></script>
 </body>
 
 </html>
