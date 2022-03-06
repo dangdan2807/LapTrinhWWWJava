@@ -5,26 +5,52 @@
 <html>
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Edit Student Info Form</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="./css/style.css">
+	<meta charset="ISO-8859-1">
+	<title>Edit Student Info Form</title>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+		integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+		crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body {
+			font-family: 'Roboto', sans-serif;
+		}
+
+		.header {
+			background-color: #007bff;
+			padding: 1rem 0px;
+		}
+
+		.header>h1 {
+			text-align: center;
+			font-weight: bold;
+			color: #fff;
+		}
+		
+		.control {
+			margin: 4px 0;
+		}
+
+		form a.btn ~ #img-avatar {
+			margin-bottom: 8px;
+		}
+	</style>
 </head>
 
 <body>
 	<div id="wrapper">
 		<div class="container-fluid">
-			<div class="header pt-4 pb-4 font-weight-bold text-light bg-primary">
+			<div class="header">
 				<h1>Edit Student Info Form</h1>
 			</div>
-			<div class="control mt-2 mb-2">
+			<div class="control">
 				<a type="button" class="btn btn-primary"
 					href="StudentControllerServlet">Back to Dashboard</a>
 			</div>
-			<form class="mb-8" action="StudentControllerServlet" method="POST">
+			<form action="StudentControllerServlet" method="POST">
 				<input type="hidden" name="command" value="UPDATE">
 				<div class="form-group">
 					<label for="studentId">Student Id</label> <input type="text"
@@ -56,10 +82,10 @@
 				</div>
 				<button type="submit" class="btn btn-primary" value="Save">Save</button>
 				<a type="button" class="btn btn-danger"
-					href="StudentControllerServlet">Cancel</a> 
-				<img id="img-avatar"
-					class="float-right rounded img-avatar" src="${THE_STUDENT.imageUrl}"
-					alt="image avatar" width="100" height="100">
+					href="StudentControllerServlet">Cancel</a> <img id="img-avatar"
+					class="float-right rounded img-avatar"
+					src="${THE_STUDENT.imageUrl}" alt="image avatar" width="100"
+					height="100">
 			</form>
 		</div>
 	</div>
