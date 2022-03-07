@@ -95,7 +95,7 @@ public class StudentDbUtil {
 		try {
 			int studentId = Integer.parseInt(theStudentId);
 			con = dataSource.getConnection();
-			String query = "delete student where id=?";
+			String query = "delete from student where id=?";
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, studentId);
 			stmt.execute();
