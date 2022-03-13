@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/webapp/META-INF=UTF-8
+encoding//src/main/webapp/list-classes.jsp=UTF-8
+encoding//src/main/webapp/list-students.jsp=UTF-8
+encoding//src/main/webapp/update-student-form.jsp=UTF-8
+encoding/<project>=UTF-8

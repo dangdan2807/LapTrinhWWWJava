@@ -37,8 +37,8 @@ pageContext.setAttribute("myCities", cities);
 			<tr>
 				<td>${tempStudent.firstName}</td>
 				<td>${tempStudent.lastName}</td>
-				<td><c:if test="${tempStudent.gender}">Male</c:if> <c:if
-						test="${not tempStudent.gender}">Female</c:if></td>
+				<td><c:if test="${tempStudent.gender}">Male</c:if> 
+					<c:if test="${not tempStudent.gender}">Female</c:if></td>
 			</tr>
 		</c:forEach>
 	</table>

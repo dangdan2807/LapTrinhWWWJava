@@ -9,11 +9,3 @@ function imageUrlChanged() {
     }
     imgAvatar.src = imageUrlLink;
 }
-
-function handlerClickRow() {
-    console.log("test");
-    // var row = event.target.parentNode;
-    // var id = row.getAttribute('data-id');
-    // var url = '?command=LOAD&studentId=' + id;
-    // window.location.href += url;
-}

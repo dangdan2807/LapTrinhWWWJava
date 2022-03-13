@@ -17,7 +17,7 @@ public class CricketCoach implements Coach {
 
 	public void setFortuneService(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
-		System.out.println("CricketCoach: inside no-arg construtor");
+		System.out.println("CricketCoach: inside no-arg constructor");
 	}
 
 	@Override

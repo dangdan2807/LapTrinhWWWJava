@@ -17,12 +17,10 @@ public class SwimCoach implements Coach {
 		System.out.println(">>SwimCoach: inside default constructor");
 	}
 
-	@Override
 	public String getDailyWorkout() {
 		return "Swim 1000 meters as warm up";
 	}
 
-	@Override
 	public String getDailyFortune() {
 		return fortuneService.getFortune();
 	}

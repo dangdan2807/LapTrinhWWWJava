@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import jdbc.DbUtil.ClassesDbUtil;
+import jdbc.DbUtil.StudentDbUtil;
+import jdbc.model.Classes;
+import jdbc.model.Department;
+import jdbc.model.Student;
+
 /**
  * Servlet implementation class StudentControllerServlet
  */
@@ -19,6 +25,7 @@ import javax.sql.DataSource;
 public class StudentControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StudentDbUtil studentDbUtil;
+	private ClassesDbUtil classesDbUtil;
 
 	@Resource(name = "jdbc/web_student_tracker")
 	private DataSource dataSource;
@@ -28,6 +35,7 @@ public class StudentControllerServlet extends HttpServlet {
 		super.init();
 		try {
 			studentDbUtil = new StudentDbUtil(dataSource);
+			classesDbUtil = new ClassesDbUtil(dataSource);
 		} catch (Exception e) {
 			throw new ServletException(e);
 		}
@@ -42,19 +50,25 @@ public class StudentControllerServlet extends HttpServlet {
 		try {
 			String theCommand = request.getParameter("command");
 			if (theCommand == null)
-				theCommand = "LIST";
+				theCommand = "HOME";
 
 			switch (theCommand) {
-			case "LIST":
+			case "HOME":
+				listClasses(request, response);
+				break;
+			case "LOAD_LIST_STUDENT":
 				listStudents(request, response);
+				break;
+			case "ADD_STUDERT_PAGE":
+				loadAddStudentPage(request, response);
 				break;
 			case "ADD":
 				addStudent(request, response);
 				break;
-			case "LOAD":
+			case "LOAD_STUDENT":
 				loadStudent(request, response);
 				break;
-			case "UPDATE":
+			case "UPDATE_STUDENT":
 				updateStudent(request, response);
 				break;
 			case "DELETE":
@@ -78,20 +92,53 @@ public class StudentControllerServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	private void listClasses(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<Classes> classList = classesDbUtil.getClassList();
+		request.setAttribute("CLASS_LIST", classList);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-classes.jsp");
+		dispatcher.forward(request, response);
+	}
+
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<Student> students = studentDbUtil.getStudents();
-		request.setAttribute("STUDENT_LIST", students);
+		int classId = Integer.parseInt(request.getParameter("classId"));
+		
+		List<Student> studentList = studentDbUtil.getStudentsByClassId(classId);
+		request.setAttribute("STUDENT_LIST", studentList);
+
+		Classes classes = classesDbUtil.getClassById(classId);
+		request.setAttribute("CLASS", classes);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-students.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void loadAddStudentPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int classId = Integer.parseInt(request.getParameter("classId"));
+		request.setAttribute("CLASS_ID", classId);
+
+		List<Classes> classList = classesDbUtil.getClassList();
+		request.setAttribute("CLASS_LIST", classList);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/add-student-form.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void addStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
+		String genderStr = request.getParameter("gender");
+		boolean gender = Integer.parseInt(genderStr) > 0;
 		String email = request.getParameter("email");
 		String imageUrl = request.getParameter("imageUrl");
+		String classIdStr = request.getParameter("class");
+		int classId = Integer.parseInt(classIdStr);
 
-		Student student = new Student(firstName, lastName, email, imageUrl);
+		if (imageUrl.isEmpty())
+			imageUrl = "";
+
+		Classes classes = new Classes(classId);
+		Student student = new Student(firstName, lastName, gender, email, imageUrl, classes);
+
 		studentDbUtil.addStudent(student);
 		listStudents(request, response);
 	}
@@ -99,7 +146,9 @@ public class StudentControllerServlet extends HttpServlet {
 	private void loadStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String studentId = request.getParameter("studentId");
 		Student student = studentDbUtil.getStudent(studentId);
+		List<Classes> classes = classesDbUtil.getClassList();
 		request.setAttribute("THE_STUDENT", student);
+		request.setAttribute("CLASS_LIST", classes);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/update-student-form.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -108,17 +157,28 @@ public class StudentControllerServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("studentId"));
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
+		String genderStr = request.getParameter("gender");
+		boolean gender = Integer.parseInt(genderStr) > 0;
 		String email = request.getParameter("email");
 		String imageUrl = request.getParameter("imageUrl");
+		String classIdStr = request.getParameter("class");
+		int classId = Integer.parseInt(classIdStr);
 
-		Student student = new Student(id, firstName, lastName, email, imageUrl);
+		Classes classes = new Classes(classId);
+		Student student = new Student(id, firstName, lastName, gender, email, imageUrl, classes);
+
 		studentDbUtil.updateStudent(student);
 		listStudents(request, response);
 	}
 
 	private void deleteStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int classId = Integer.parseInt(request.getParameter("classId"));
+		
 		String theStudentId = request.getParameter("studentId");
 		studentDbUtil.deleteStudent(theStudentId);
+		
+		Classes classes = classesDbUtil.getClassById(classId);
+		request.setAttribute("CLASS", classes);
 		listStudents(request, response);
 	}
 

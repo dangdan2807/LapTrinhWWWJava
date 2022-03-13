@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc.DbUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
+
+import jdbc.model.Classes;
+import jdbc.model.Department;
+import jdbc.model.Student;
 
 public class StudentDbUtil {
 	private DataSource dataSource;
@@ -29,26 +33,39 @@ public class StudentDbUtil {
 		}
 	}
 
-	public List<Student> getStudents() throws Exception {
-		List<Student> students = new ArrayList<>();
+	public List<Student> getStudentsByClassId(int classId) throws Exception {
+		List<Student> dataList = new ArrayList<>();
 		Connection con = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String query = "select * from student order by lastName desc";
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
+			String query = "select s.id as `studentId`, s.firstName, s.lastName, s.gender, s.email, s.imageUrl, "
+					+ "s.classId, c.className, c.departmentId, d.departmentName "
+					+ "from student s, class c, department d "
+					+ "where s.classId = c.id and c.departmentId = d.id and c.id = ?";
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, classId);
+			rs = stmt.executeQuery();
 			while (rs.next()) {
-				int id = rs.getInt("id");
+				int id = rs.getInt("studentId");
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
+				boolean gender = rs.getBoolean("gender");
 				String email = rs.getString("email");
 				String imageUrl = rs.getString("imageUrl");
-				Student tempStudent = new Student(id, firstName, lastName, email, imageUrl);
-				students.add(tempStudent);
+
+				int class_Id = rs.getInt("classId");
+				String className = rs.getString("className");
+				int departmentId = rs.getInt("departmentId");
+				String departmentName = rs.getString("departmentName");
+
+				Department department = new Department(departmentId, departmentName);
+				Classes classes = new Classes(class_Id, className, department);
+				Student tempStudent = new Student(id, firstName, lastName, gender, email, imageUrl, classes);
+				dataList.add(tempStudent);
 			}
-			return students;
+			return dataList;
 		} finally {
 			close(con, stmt, rs);
 		}
@@ -59,12 +76,15 @@ public class StudentDbUtil {
 		PreparedStatement stmt = null;
 		try {
 			con = dataSource.getConnection();
-			String query = "insert into student (firstName, lastName, email, imageUrl) values (?, ?, ?, ?)";
+			String query = "insert into student (firstName, lastName, gender, email, imageUrl, classId)"
+					+ " values (?, ?, ?, ?, ?, ?)";
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, student.getFirstName());
 			stmt.setString(2, student.getLastName());
-			stmt.setString(3, student.getEmail());
-			stmt.setString(4, student.getImageUrl());
+			stmt.setBoolean(3, student.getGender());
+			stmt.setString(4, student.getEmail());
+			stmt.setString(5, student.getImageUrl());
+			stmt.setInt(6, student.getClasses().getClassId());
 			stmt.execute();
 		} finally {
 			close(con, stmt, null);
@@ -76,13 +96,16 @@ public class StudentDbUtil {
 		PreparedStatement stmt = null;
 		try {
 			con = dataSource.getConnection();
-			String query = "update student set firstName=?, lastName=?, email=?, imageUrl=? where id=?";
+			String query = "update student set firstName=?, lastName=?, gender=?, email=?, imageUrl=?, classId=?"
+					+ " where id=?";
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, student.getFirstName());
 			stmt.setString(2, student.getLastName());
-			stmt.setString(3, student.getEmail());
-			stmt.setString(4, student.getImageUrl());
-			stmt.setInt(5, student.getId());
+			stmt.setBoolean(3, student.getGender());
+			stmt.setString(4, student.getEmail());
+			stmt.setString(5, student.getImageUrl());
+			stmt.setInt(6, student.getClasses().getClassId());
+			stmt.setInt(7, student.getId());
 			stmt.execute();
 		} finally {
 			close(con, stmt, null);
@@ -113,16 +136,29 @@ public class StudentDbUtil {
 		try {
 			studentId = Integer.parseInt(theStudentId);
 			con = dataSource.getConnection();
-			String query = "select * from student where id=?";
+			String query = "select s.id as `studentId`, s.firstName, s.lastName, s.gender, s.email, s.imageUrl, "
+					+ "s.classId, c.className, c.departmentId, d.departmentName "
+					+ "from student s, class c, department d "
+					+ "where s.classId = c.id and c.departmentId = d.id and s.id = ? LIMIT 1";
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, studentId);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
+				int id = rs.getInt("studentId");
 				String firstName = rs.getString("firstName");
 				String lastName = rs.getString("lastName");
+				boolean gender = rs.getBoolean("gender");
 				String email = rs.getString("email");
 				String imageUrl = rs.getString("imageUrl");
-				student = new Student(studentId, firstName, lastName, email, imageUrl);
+
+				int class_Id = rs.getInt("classId");
+				String className = rs.getString("className");
+				int departmentId = rs.getInt("departmentId");
+				String departmentName = rs.getString("departmentName");
+
+				Department department = new Department(departmentId, departmentName);
+				Classes classes = new Classes(class_Id, className, department);
+				student = new Student(id, firstName, lastName, gender, email, imageUrl, classes);
 			} else {
 				throw new Exception("Could not find student id: " + studentId);
 			}
