@@ -55,7 +55,7 @@ form a.btn ~ #img-avatar {
 				<a type="button" class="btn btn-primary"
 					href="StudentControllerServlet">Back to Dashboard</a>
 				<c:url var="addStudentPage" value="StudentControllerServlet">
-					<c:param name="command" value="ADD_STUDERT_PAGE"></c:param>
+					<c:param name="command" value="ADD_STUDENT_PAGE"></c:param>
 					<c:param name="classId" value="${CLASS.classId}"></c:param>
 				</c:url>
 				<a class="btn btn-primary" href="${addStudentPage}"> Add Student

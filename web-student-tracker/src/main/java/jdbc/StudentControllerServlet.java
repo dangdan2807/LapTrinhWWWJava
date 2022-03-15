@@ -12,11 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import jdbc.DbUtil.ClassesDbUtil;
-import jdbc.DbUtil.StudentDbUtil;
-import jdbc.model.Classes;
-import jdbc.model.Department;
-import jdbc.model.Student;
+import jdbc.DbUtil.*;
+import jdbc.model.*;
 
 /**
  * Servlet implementation class StudentControllerServlet
@@ -59,7 +56,7 @@ public class StudentControllerServlet extends HttpServlet {
 			case "LOAD_LIST_STUDENT":
 				listStudents(request, response);
 				break;
-			case "ADD_STUDERT_PAGE":
+			case "ADD_STUDENT_PAGE":
 				loadAddStudentPage(request, response);
 				break;
 			case "ADD":

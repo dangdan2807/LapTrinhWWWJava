@@ -1,4 +1,4 @@
- package lab_01.libs;
+package lab_01.libs;
 
 public interface FortuneService {
 	public String getFortune();

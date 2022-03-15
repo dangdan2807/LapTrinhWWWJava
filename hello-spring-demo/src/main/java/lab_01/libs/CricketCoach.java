@@ -20,12 +20,10 @@ public class CricketCoach implements Coach {
 		System.out.println("CricketCoach: inside no-arg constructor");
 	}
 
-	@Override
 	public String getDailyWorkout() {
 		return null;
 	}
 
-	@Override
 	public String getDailyFortune() {
 		return null;
 	}

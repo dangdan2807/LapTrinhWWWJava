@@ -9,10 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import jdbc.model.Classes;
-import jdbc.model.Department;
-import jdbc.model.Student;
-
+import jdbc.model.*;
 public class ClassesDbUtil {
 	private DataSource dataSource;
 
