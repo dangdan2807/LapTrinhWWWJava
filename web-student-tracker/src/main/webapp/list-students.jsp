@@ -53,12 +53,12 @@ form a.btn ~ #img-avatar {
 			</div>
 			<div class="control">
 				<a type="button" class="btn btn-primary"
-					href="StudentControllerServlet">Back to Dashboard</a>
+					href="StudentControllerServlet">Quay lại DS lớp học</a>
 				<c:url var="addStudentPage" value="StudentControllerServlet">
 					<c:param name="command" value="ADD_STUDENT_PAGE"></c:param>
 					<c:param name="classId" value="${CLASS.classId}"></c:param>
 				</c:url>
-				<a class="btn btn-primary" href="${addStudentPage}"> Add Student
+				<a class="btn btn-primary" href="${addStudentPage}"> Thêm sinh viên mới
 				</a>
 			</div>
 			<div class="show-data">
@@ -83,7 +83,7 @@ form a.btn ~ #img-avatar {
 								<c:param name="studentId" value="${tempStudent.id}"></c:param>
 							</c:url>
 							<c:url var="deleteLink" value="StudentControllerServlet">
-								<c:param name="command" value="DELETE"></c:param>
+								<c:param name="command" value="DELETE_STUDENT"></c:param>
 								<c:param name="studentId" value="${tempStudent.id}"></c:param>
 								<c:param name="classId" value="${tempStudent.classes.classId}"></c:param>
 							</c:url>

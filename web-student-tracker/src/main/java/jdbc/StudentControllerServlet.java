@@ -53,13 +53,16 @@ public class StudentControllerServlet extends HttpServlet {
 			case "HOME":
 				listClasses(request, response);
 				break;
+			case "ADD_CLASS":
+				loadAddClassPage(request, response);
+				break;
 			case "LOAD_LIST_STUDENT":
 				listStudents(request, response);
 				break;
 			case "ADD_STUDENT_PAGE":
 				loadAddStudentPage(request, response);
 				break;
-			case "ADD":
+			case "ADD_STUDENT":
 				addStudent(request, response);
 				break;
 			case "LOAD_STUDENT":
@@ -68,7 +71,7 @@ public class StudentControllerServlet extends HttpServlet {
 			case "UPDATE_STUDENT":
 				updateStudent(request, response);
 				break;
-			case "DELETE":
+			case "DELETE_STUDENT":
 				deleteStudent(request, response);
 				break;
 			default:
@@ -93,6 +96,11 @@ public class StudentControllerServlet extends HttpServlet {
 		List<Classes> classList = classesDbUtil.getClassList();
 		request.setAttribute("CLASS_LIST", classList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-classes.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void loadAddClassPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/add-class-form.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -46,7 +46,11 @@ body {
 			<div class="header">
 				<h1>Danh sách lớp học</h1>
 			</div>
-			<div class="control"></div>
+			<div class="control">
+				<button class="btn btn-primary"
+					onclick="window.location.href='add-class-form.jsp'; return false;">
+					Thêm lớp học mới</button>
+			</div>
 			<div class="show-list-classes row">
 				<c:forEach var="tempClass" items="${CLASS_LIST}">
 					<c:url var="getStudentList" value="StudentControllerServlet">
@@ -61,7 +65,10 @@ body {
 									<span class="card-text__label">Khoa:</span>
 									${tempClass.department.departmentName}
 								</p>
-								<a href="${getStudentList}" class="btn btn-primary">Danh sách sinh viên</a>
+								<a href="${getStudentList}" class="btn btn-primary">Danh
+									sách sinh viên</a>
+								<a href="${getStudentList}" class="btn btn-success">Sửa</a>
+								<a href="${getStudentList}" class="btn btn-danger">Xóa</a>
 							</div>
 						</div>
 					</div>

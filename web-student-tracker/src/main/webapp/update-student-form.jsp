@@ -67,13 +67,12 @@ form a.btn ~ #img-avatar {
 			</div>
 			<div class="control">
 				<a type="button" class="btn btn-primary"
-					href="StudentControllerServlet">Back to Dashboard</a>
+					href="StudentControllerServlet">Quay lại DS lớp học</a>
 				<c:url var="backToClass" value="StudentControllerServlet">
 					<c:param name="command" value="LOAD_LIST_STUDENT"></c:param>
 					<c:param name="classId" value="${THE_STUDENT.classes.classId}"></c:param>
 				</c:url>
-				<a type="button" class="btn btn-primary" href="${backToClass}">Back
-					to student list</a>
+				<a type="button" class="btn btn-primary" href="${backToClass}">Quay lại DSSV</a>
 			</div>
 			<div class="container">
 				<form action="StudentControllerServlet" accept-charset="utf-8"
