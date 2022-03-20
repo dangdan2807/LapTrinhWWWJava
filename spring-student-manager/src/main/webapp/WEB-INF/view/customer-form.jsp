@@ -13,25 +13,25 @@
 
 <body>
     <form:form action="processForm" modelAttribute="customer" method="POST">
-        First Name:
+        <b>First Name:</b>
         <form:input path="firstName" />
         <br /><br />
 
-        Last Name:
+        <b>Last Name:</b>
         <form:input path="lastName" />
         <br /><br />
         
-        Sex:
+        <b>Sex:</b>
         <br />
         Nam <form:radiobutton path="sex" item="0" />
         Nữ <form:radiobutton path="sex" item="1" />
         <br /><br />
 
-        Email:
+        <b>Email:</b>
         <form:input path="email" />
         <br /><br />
 
-        Address:
+        <b>Address:</b>
         <form:input path="address" />
         <br /><br />
         <input type="submit" value="submit" />

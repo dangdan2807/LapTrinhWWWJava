@@ -16,47 +16,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
-<style type="text/css">
-body {
-	font-family: 'Roboto', sans-serif;
-}
-
-.header {
-	background-color: #007bff;
-	padding: 1rem 0px;
-}
-
-.header>h1 {
-	text-align: center;
-	font-weight: bold;
-	color: #fff;
-}
-
-.control {
-	margin: 4px 0;
-}
-
-.form-group>label {
-	font-weight: bold;
-}
-
-form .img-box {
-	display: flex;
-	width: 300px;
-	height: 300px;
-	margin-top: 2rem;
-	margin-bottom: 4px;
-}
-
-form .img-avatar {
-	width: 300px;
-	height: 300px;
-}
-
-form a.btn ~ #img-avatar {
-	margin-bottom: 8px;
-}
-</style>
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet" />
 </head>
 
 <body>
@@ -72,11 +33,12 @@ form a.btn ~ #img-avatar {
 					<c:param name="command" value="LOAD_LIST_STUDENT"></c:param>
 					<c:param name="classId" value="${THE_STUDENT.classes.classId}"></c:param>
 				</c:url>
-				<a type="button" class="btn btn-primary" href="${backToClass}">Quay lại DSSV</a>
+				<a type="button" class="btn btn-primary" href="${backToClass}">Quay
+					lại DSSV</a>
 			</div>
 			<div class="container">
-				<form action="StudentControllerServlet" accept-charset="utf-8"
-					method="POST">
+				<form id="form-update-student" action="StudentControllerServlet"
+					accept-charset="utf-8" method="POST">
 					<input type="hidden" name="command" value="UPDATE_STUDENT">
 					<input type="hidden" name="classId"
 						value="${THE_STUDENT.classes.classId}">
@@ -163,7 +125,8 @@ form a.btn ~ #img-avatar {
 			</div>
 		</div>
 	</div>
-	<script src="./js/script.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/script.js"></script>
 </body>
 
 </html>

@@ -15,34 +15,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
-<style type="text/css">
-body {
-	font-family: 'Roboto', sans-serif;
-}
-
-.header {
-	background-color: #007bff;
-	padding: 1rem 0px;
-}
-
-.header>h1 {
-	text-align: center;
-	font-weight: bold;
-	color: #fff;
-}
-
-.control {
-	margin: 4px 0;
-}
-
-.show-data thead {
-	color: #fff;
-}
-
-form a.btn ~ #img-avatar {
-	margin-bottom: 8px;
-}
-</style>
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet" />
 </head>
 
 <body>
@@ -58,22 +32,22 @@ form a.btn ~ #img-avatar {
 					<c:param name="command" value="ADD_STUDENT_PAGE"></c:param>
 					<c:param name="classId" value="${CLASS.classId}"></c:param>
 				</c:url>
-				<a class="btn btn-primary" href="${addStudentPage}"> Thêm sinh viên mới
-				</a>
+				<a class="btn btn-primary" href="${addStudentPage}">Thêm sinh
+					viên mới </a>
 			</div>
 			<div class="show-data">
 				<input type="hidden" name="classId" value="${CLASS.classId}">
 				<table class="table table-striped table-hover">
 					<thead class="bg-primary">
 						<tr>
-							<th>Student ID</th>
-							<th>First name</th>
-							<th>Last name</th>
-							<th>Gender</th>
+							<th>ID</th>
+							<th>Họ</th>
+							<th>Tên</th>
+							<th>Giới tính</th>
 							<th>Email</th>
-							<th>Class</th>
+							<th>Lớp</th>
 							<th>Avatar</th>
-							<th>Action</th>
+							<th>Hành động</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -109,7 +83,8 @@ form a.btn ~ #img-avatar {
 			</div>
 		</div>
 	</div>
-	<script src="./js/script.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/script.js"></script>
 </body>
 
 </html>

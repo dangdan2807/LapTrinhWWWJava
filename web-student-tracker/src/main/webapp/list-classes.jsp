@@ -15,30 +15,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
-<style type="text/css">
-body {
-	font-family: 'Roboto', sans-serif;
-}
-
-.header {
-	background-color: #007bff;
-	padding: 1rem 0px;
-}
-
-.header>h1 {
-	text-align: center;
-	font-weight: bold;
-	color: #fff;
-}
-
-.control {
-	margin: 4px 0;
-}
-
-.card-text__label {
-	font-weight: bold;
-}
-</style>
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<div id="wrapper">
@@ -50,6 +28,7 @@ body {
 				<button class="btn btn-primary"
 					onclick="window.location.href='add-class-form.jsp'; return false;">
 					Thêm lớp học mới</button>
+				<button class="btn btn-primary">Danh sách khoa</button>
 			</div>
 			<div class="show-list-classes row">
 				<c:forEach var="tempClass" items="${CLASS_LIST}">
@@ -66,9 +45,9 @@ body {
 									${tempClass.department.departmentName}
 								</p>
 								<a href="${getStudentList}" class="btn btn-primary">Danh
-									sách sinh viên</a>
-								<a href="${getStudentList}" class="btn btn-success">Sửa</a>
-								<a href="${getStudentList}" class="btn btn-danger">Xóa</a>
+									sách sinh viên</a> <a href="${getStudentList}"
+									class="btn btn-success">Sửa</a> <a href="${getStudentList}"
+									class="btn btn-danger">Xóa</a>
 							</div>
 						</div>
 					</div>

@@ -15,36 +15,14 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
 	rel="stylesheet">
-<style type="text/css">
-body {
-	font-family: 'Roboto', sans-serif;
-}
-
-.header {
-	background-color: #007bff;
-	padding: 1rem 0px;
-}
-
-.header>h1 {
-	text-align: center;
-	font-weight: bold;
-	color: #fff;
-}
-
-.control {
-	margin: 4px 0;
-}
-
-.show-data thead {
-	color: #fff;
-}
-</style>
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<div id="wrapper">
 		<div class="container-fluid">
 			<div class="header">
-				<h1>Add Class form</h1>
+				<h1>Form thêm lớp học</h1>
 			</div>
 			<div class="control">
 				<a type="button" class="btn btn-primary"
