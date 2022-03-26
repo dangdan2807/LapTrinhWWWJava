@@ -15,7 +15,7 @@
 	<br />
 	<% 
 		Object message=request.getAttribute("message"); 
-		out.println(message !=null ? "the message: " + message.toString(): "" ); 
+		out.println(message != null ? "the message: " + message.toString(): "" ); 
 	%>
 </body>
 

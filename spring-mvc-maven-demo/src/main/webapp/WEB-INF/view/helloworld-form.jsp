@@ -5,6 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Hello World</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style.css" />
 </head>
 
 <body>
@@ -12,7 +13,7 @@
 	<br />
 	<form action="processForm" method="post">
 		<input type="text" placeholder="What's your name?" />
-		<input type="submit" />
+		<input class="btn" type="submit" />
 	</form>
 	<br />
 
@@ -20,7 +21,7 @@
 	<br />
 	<form action="processFormVersionTwo" method="post">
 		<input type="text" name="studentName" placeholder="What's your name?" />
-		<input type="submit" />
+		<input class="btn" type="submit" />
 	</form>
 	<br />
 
@@ -28,7 +29,7 @@
 	<br />
 	<form action="processFormVersionThree" method="post">
 		<input type="text" name="studentName" placeholder="What's your name?" />
-		<input type="submit" />
+		<input class="btn" type="submit" />
 	</form>
 </body>
 

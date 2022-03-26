@@ -16,25 +16,25 @@ public class HelloWorldController {
 	}
 
 	@RequestMapping("/processForm")
-	public String processForm() {
+	public String processForm(HttpServletRequest request) {
+		String name = request.getParameter("studentName");
+		request.setAttribute("message", name);
 		return "helloWorld";
 	}
 
 	@RequestMapping("/processFormVersionTwo")
 	public String letShoutDude(HttpServletRequest request, Model model) {
 		String name = request.getParameter("studentName");
-		name = name.toUpperCase();
 		// create message
-		String result = "Yo! " + name;
+		String result = "Yo! " + name.toUpperCase();
 		model.addAttribute("message", result);
 		return "helloWorld";
 	}
 
 	@RequestMapping("/processFormVersionThree")
 	public String processFormVersionThree(@RequestParam("studentName") String name, Model model) {
-		name = name.toUpperCase();
 		// create message
-		String result = "Hey! my friend from: " + name;
+		String result = "Hey! my friend from: " + name.toUpperCase();
 		model.addAttribute("message", result);
 		return "helloWorld";
 	}

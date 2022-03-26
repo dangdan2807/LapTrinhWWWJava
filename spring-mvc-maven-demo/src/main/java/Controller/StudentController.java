@@ -10,7 +10,7 @@ import model.Student;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
-    @RequestMapping("/showForm")
+	@RequestMapping("/showForm")
     public String showForm(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);

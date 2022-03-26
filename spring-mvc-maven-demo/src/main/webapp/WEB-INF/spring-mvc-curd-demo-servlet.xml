@@ -14,12 +14,15 @@
 		base-package="Controller" />
 
 	<mvc:annotation-driven />
+	<mvc:resources location="/resources/"
+		mapping="/resources/**"></mvc:resources>
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property value="resources/messages" name="basenames" />

@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>student form</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style.css" />
 </head>
 
 <body>
@@ -60,7 +61,7 @@
             Mac OS <form:checkbox path="operatingSystems" value="Mac OS" />
         -->
         <br /><br />
-        <input type="submit" value="submit" />
+        <input class="btn" type="submit" value="submit" />
     </form:form>
 </body>
 
