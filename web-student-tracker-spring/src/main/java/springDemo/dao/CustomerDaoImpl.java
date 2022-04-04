@@ -8,9 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.WebDataBinder;
 
 import springDemo.entity.Customer;
 

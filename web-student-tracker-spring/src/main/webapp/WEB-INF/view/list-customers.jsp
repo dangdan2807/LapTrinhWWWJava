@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+%>
 <%@page import="org.springframework.web.servlet.tags.Param"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -13,14 +14,17 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-	crossorigin="anonymous">
+	crossorigin="anonymous"
+>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
-	rel="stylesheet">
+	rel="stylesheet"
+>
 <link type="text/css" rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
+	href="${pageContext.request.contextPath}/resources/css/style.css"
+>
 </head>
 
 <body>
@@ -30,7 +34,8 @@
 				<h1 class="text-white text-center">Danh Sách Khách Hàng</h1>
 			</div>
 			<div class="control mt-1 mb-1">
-				<a class="btn btn-primary" href="./add-customer-form">Thêm khách hàng mới</a>
+				<a class="btn btn-primary" href="./add-customer-form">Thêm khách hàng
+					mới</a>
 			</div>
 			<div class="show-data">
 				<input type="text" id="customerId" name="id" value="" hidden />
@@ -58,11 +63,18 @@
 								<td>${tempCustomer.lastName}</td>
 								<td><a href="mailto:${tempCustomer.email}">${tempCustomer.email}</a>
 								</td>
-								<td><a class="btn btn-primary" href="${editLink}"
-									onclick="document.getElementById('customerId').value='${tempCustomer.id}';">
-										Edit </a> <a class="btn btn-danger" href="${deleteLink}"
-									onclick="if (!confirm('Are you sure you want to delete this student?')) { return false; }">
-										Delete </a></td>
+								<td>
+									<a class="btn btn-primary" href="${editLink}"
+										onclick="document.getElementById('customerId').value='${tempCustomer.id}';"
+									> 
+										Edit 
+									</a> 
+									<a class="btn btn-danger" href="${deleteLink}"
+										onclick="if (!confirm('Are you sure you want to delete this student?')) { return false; }"
+									> 
+									Delete 
+									</a>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
