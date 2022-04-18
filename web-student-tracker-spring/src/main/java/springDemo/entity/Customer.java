@@ -1,5 +1,7 @@
 package springDemo.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -8,26 +10,26 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 
-	@NotBlank(message = "Tên không được để trống")
-	@NotNull(message = "Tên không được để trống")
-	@Size(min = 2, message = "Tên ít nhất phải có 2 ký tự")
+	// @NotBlank(message = "Tên không được để trống")
+	// @NotNull(message = "Tên không được để trống")
+	// @Size(min = 2, message = "Tên ít nhất phải có 2 ký tự")
 	@Column(name = "first_name")
 	private String firstName;
 
-	@NotBlank(message = "Họ không được để trống")
-	@NotNull(message = "Họ không được để trống")
-	@Size(min = 2, message = "Họ ít nhất phải có 2 ký tự")
+	// @NotBlank(message = "Họ không được để trống")
+	// @NotNull(message = "Họ không được để trống")
+	// @Size(min = 2, message = "Họ ít nhất phải có 2 ký tự")
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Pattern(regexp = "^[a-zA-Z0-9._+]+@[a-zA-Z0-9.]+$", message = "Email không hợp lệ")
-	@NotNull(message = "Email không được để trống")
+	// @Pattern(regexp = "^[a-zA-Z0-9._+]+@[a-zA-Z0-9.]+$", message = "Email không hợp lệ")
+	// @NotNull(message = "Email không được để trống")
 	@Column(name = "email")
 	private String email;
 
