@@ -31,7 +31,7 @@ public class CustomerRestController {
 	}
 	
 	@GetMapping("/customers/{customerId}")
-	public Customer getStudent(@PathVariable int customerId) throws Exception {
+	public Customer getCustomer(@PathVariable int customerId) throws Exception {
 		Customer customer = customerService.getCustomer(customerId);
 		if ((customerId < 0) || customer == null) {
 			throw new StudentNotFoundException("customer id not found - " + customerId);
@@ -63,6 +63,20 @@ public class CustomerRestController {
 		customerService.deleteCustomer(customerId);
 
 		return "Deleted customer id - " + customerId;
+	}
+
+	@GetMapping("/customers/{customerId}/money/{money}")
+	public String getCustomerMoney(@PathVariable int customerId, @PathVariable String money) {
+		Customer customer = customerService.getCustomer(customerId);
+		if ((customerId < 0) || customer == null) {
+			throw new StudentNotFoundException("customer id not found - " + customerId);
+		}
+		return "{ \"id\": " + customerId
+			+ ", \"firstName\": \""  + customer.getFirstName()
+			+ "\", \"lastName\": \""  + customer.getLastName()
+			+ "\", \"email\": \""  + customer.getEmail()
+			+ "\", \"money\": " + money
+			+ " }";
 	}
 	
 	@ExceptionHandler

@@ -34,15 +34,6 @@ public class DemoAppConfig implements WebMvcConfigurer {
     private Environment env;
     private Logger logger = Logger.getLogger(getClass().getName());
 
-    // define a bean for ViewResolver
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/view/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }
-
     @Bean
     public DataSource myDataSource() {
         // create connection pool
@@ -85,7 +76,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
 
-        // create session factorys
+        // create session factory
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
         // set the properties
