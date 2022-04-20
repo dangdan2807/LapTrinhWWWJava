@@ -13,58 +13,58 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
-    @Autowired
-    private SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-    @Override
-    public List<Customer> getCustomers() {
-        List<Customer> customers = new ArrayList<Customer>();
-        Session session = sessionFactory.getCurrentSession();
+	@Override
+	public List<Customer> getCustomers() {
+		List<Customer> customers = new ArrayList<Customer>();
+		Session session = sessionFactory.getCurrentSession();
 
-        Query<Customer> query = session.createQuery("from Customer", Customer.class);
+		Query<Customer> query = session.createQuery("from Customer", Customer.class);
 
-        customers = query.getResultList();
-        return customers;
-    }
+		customers = query.getResultList();
+		return customers;
+	}
 
-    @Override
-    public Customer getCustomer(int customerId) {
-        Customer customer = new Customer();
-        String queryStr = "from Customer where id = :customerId";
-        Session session = sessionFactory.getCurrentSession();
-        Query<Customer> query = session.createQuery(queryStr, Customer.class);
-        query.setParameter("customerId", customerId);
+	@Override
+	public Customer getCustomer(int customerId) {
+		Customer customer = null;
+		String queryStr = "from Customer where id = :customerId";
+		Session session = sessionFactory.getCurrentSession();
+		Query<Customer> query = session.createQuery(queryStr, Customer.class);
+		query.setParameter("customerId", customerId);
 
-        customer = query.getSingleResult();
+		customer = query.getResultStream().findFirst().orElse(null);
 
-        return customer;
-    }
+		return customer;
+	}
 
-    @Override
-    public void saveCustomer(Customer customer) {
-        Session session = sessionFactory.getCurrentSession();
-        session.save(customer);
-    }
+	@Override
+	public void saveCustomer(Customer customer) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(customer);
+	}
 
-    @Override
-    public void updateCustomer(Customer customer) {
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(customer);
-    }
+	@Override
+	public void updateCustomer(Customer customer) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(customer);
+	}
 
-    @Override
-    public void deleteCustomer(int customerId) {
-        Session session = sessionFactory.getCurrentSession();
-        Customer customer = session.get(Customer.class, customerId);
-        session.delete(customer);
-    }
+	@Override
+	public void deleteCustomer(int customerId) {
+		Session session = sessionFactory.getCurrentSession();
+		Customer customer = session.get(Customer.class, customerId);
+		session.delete(customer);
+	}
 
-    @Override
-    public int getNumberOfCustomer() {
-        Session session = sessionFactory.getCurrentSession();
-        String queryStr = "select count(*) from Customer";
-        Query<Long> query = session.createQuery(queryStr, Long.class);
-        Long count = query.getSingleResult();
-        return count.intValue();
-    }
+	@Override
+	public int getNumberOfCustomer() {
+		Session session = sessionFactory.getCurrentSession();
+		String queryStr = "select count(*) from Customer";
+		Query<Long> query = session.createQuery(queryStr, Long.class);
+		Long count = query.getSingleResult();
+		return count.intValue();
+	}
 }
