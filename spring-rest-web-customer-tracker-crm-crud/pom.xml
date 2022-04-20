@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>spring-rest-demo-pojo-global-handing-exception</groupId>
-  <artifactId>spring-rest-demo-pojo-global-handing-exception</artifactId>
-  <version>1.0</version>
-  <packaging>war</packaging>
-  <build>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>spring-rest-demo-pojo-global-handing-exception</groupId>
+	<artifactId>spring-rest-demo-pojo-global-handing-exception</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -95,7 +95,6 @@
 			<version>1.2</version>
 		</dependency>
 
-
 		<!-- Add MySQL and C3P0 support -->
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
@@ -116,9 +115,9 @@
 			<version>5.4.1.Final</version>
 		</dependency>
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.13.2.2</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.2.2</version>
 		</dependency>
 	</dependencies>
 </project>
