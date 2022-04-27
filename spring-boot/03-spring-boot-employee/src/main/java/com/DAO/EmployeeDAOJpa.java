@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.entity.Employee;
 
-public interface EmployeeDAO {
+public interface EmployeeDAOJpa {
     public List<Employee> getEmployees();
 
     public Employee getEmployeeById(int id);

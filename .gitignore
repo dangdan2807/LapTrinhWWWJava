@@ -1,4 +1,6 @@
-/.metadata/
+**/.metadata/**
 **/target/**
 **/build/**
 **/test/**
+**/Servers/**
+**/zip/**

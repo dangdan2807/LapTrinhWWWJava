@@ -2,11 +2,10 @@ package com.rest;
 
 import java.util.List;
 
-import com.DAO.EmployeeDAOHibernate;
+import com.DAO.*;
 import com.entity.Employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
-public class RestEmployController {
-    private EmployeeDAOHibernate employeeDao;
+@RequestMapping("/api3")
+public class RestEmployController3 {
+    private EmployeeDAOSpringData employeeDao;
 
     @Autowired
-    public RestEmployController(@Qualifier("employeeDAOHibernateImpl") EmployeeDAOHibernate employeeDao) {
+    public RestEmployController3(EmployeeDAOSpringData employeeDao) {
         this.employeeDao = employeeDao;
     }
 
@@ -43,19 +42,22 @@ public class RestEmployController {
         return employeeDao.getEmployeeById(id);
     }
 
+    @GetMapping("/employees/last")
+    public Employee getEmployeeById(){
+        return employeeDao.getLastEmployee();
+    }
+
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee employee) {
         employee.setId(0);
         employeeDao.saveEmployee(employee);
-        Employee tempEmployee = employeeDao.getLastEmployee();
-        return tempEmployee;
+        return employee;
     }
     
     @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee employee) {
         employeeDao.saveEmployee(employee);
-        Employee tempEmployee = employeeDao.getLastEmployee();
-        return tempEmployee;
+        return employee;
     }
 
     @DeleteMapping("/employees/{id}")
@@ -68,6 +70,7 @@ public class RestEmployController {
 
         return "Deleted Employee id - " + id;
     }
+
     
     @ExceptionHandler
 	public ResponseEntity<EmployeeErrorResponse> handleException(EmployeeNotFoundException exc) {

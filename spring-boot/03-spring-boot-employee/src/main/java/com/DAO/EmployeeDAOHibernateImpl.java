@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class EmployeeDAOHibernateImpl implements EmployeeDAOHibernate {
     private EntityManager entityManager;
 
     @Autowired
-    public EmployeeDAOImpl(EntityManager entityManager) {
+    public EmployeeDAOHibernateImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -60,7 +60,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Transactional
     public void deleteEmployeeById(int id) {
         Session currentSession = entityManager.unwrap(Session.class);
-        Query query = currentSession.createQuery("DELETE FROM Employee WHERE id = :id");
+        Query<?> query = currentSession.createQuery("DELETE FROM Employee WHERE id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
     }
